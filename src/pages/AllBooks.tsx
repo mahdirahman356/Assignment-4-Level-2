@@ -1,14 +1,12 @@
-import BooksCard from "@/components/module/AllBooks/BooksCard";
+import BooksCard from "@/components/module/books/BooksCard";
 import { useGetBooksQuery } from "@/redux/api/baseApi";
 import type { IBooks } from "@/types";
 
 const AllBooks = () => {
 
-    const { data, isError } = useGetBooksQuery(undefined)
+    const { data } = useGetBooksQuery(undefined)
 
     console.log(data)
-    console.log("Error", isError)
-
     return (
         <div>
             <section className="h-screen">
@@ -16,17 +14,13 @@ const AllBooks = () => {
                     <h1 className="text-4xl font-bold leading-none sm:text-5xl">
                         Explore All Books
                     </h1>
-                    <p className="px-8 mt-8 mb-12 text-lg">
+                    <p className="px-8 text-sm md:text-lg mt-8 mb-12">
                         Browse our full collection of books across all genres. Whether you're into fiction, non-fiction, thrillers, or self-help—there’s something here for every reader.
                     </p>
-                    <div className="flex flex-wrap justify-center">
-                        <button className="px-8 py-3 m-2 text-lg font-semibold rounded ">Get started</button>
-                        <button className="px-8 py-3 m-2 text-lg border rounded">Learn more</button>
-                    </div>
                 </div>
             </section>
 
-            <div className="w-[85%] mx-auto my-10">
+            <div className="w-[85%] mx-auto mb-10">
                 <h3 className="text-3xl font-bold mb-8">
                     Discover Your <br /> Next Book
                 </h3>

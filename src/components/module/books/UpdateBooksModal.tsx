@@ -58,7 +58,7 @@ const UpdateBooksModal = ({ id }: IProps) => {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button className="bg-gray-800 text-white text-xl rounded-sm" variant="outline">
+                <Button className="bg-[#070F2B] text-white text-xl rounded-sm" variant="outline">
                     <AiTwotoneEdit />
                 </Button>
             </DialogTrigger>

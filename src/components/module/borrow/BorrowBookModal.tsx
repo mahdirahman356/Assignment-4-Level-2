@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 import { useBorrowBookMutation } from "@/redux/api/baseApi";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 type IProps = {
     bookId: string;
@@ -21,6 +22,7 @@ type IProps = {
 
 const BorrowBookModal = ({ bookId, availability }: IProps) => {
     const [open, setOpen] = useState(false)
+    const navigate = useNavigate();
     const form = useForm()
     const [borrowBook] = useBorrowBookMutation();
 
@@ -40,6 +42,7 @@ const BorrowBookModal = ({ bookId, availability }: IProps) => {
                 draggable: true
             });
             form.reset()
+            navigate("/borrow-summary");
         } catch (error) {
             console.error(error);
         }
@@ -49,7 +52,7 @@ const BorrowBookModal = ({ bookId, availability }: IProps) => {
         <div>
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogTrigger asChild>
-                    <Button className="bg-gray-800 text-white rounded-sm text-xl" variant="outline">
+                    <Button className="bg-[#1B1A55] text-white rounded-sm text-xl" variant="outline">
                         <LiaBookSolid />
                     </Button>
                 </DialogTrigger>

@@ -6,13 +6,9 @@ const Home = () => {
                 <h1 className="text-4xl font-bold leading-none sm:text-5xl">
                    Welcome to Book Lovers
                 </h1>
-                <p className="px-8 mt-8 mb-12 text-lg">
+                <p className="px-8 text-sm md:text-lg mt-8 mb-12">
                     Discover your next great read. Explore a world of stories, knowledge, and imagination—all in one place. From timeless classics to modern bestsellers, find books that match your passion.
                 </p>
-                <div className="flex flex-wrap justify-center">
-                    <button className="px-8 py-3 m-2 text-lg font-semibold rounded ">Get started</button>
-                    <button className="px-8 py-3 m-2 text-lg border rounded">Learn more</button>
-                </div>
             </div>
         </section>
     );

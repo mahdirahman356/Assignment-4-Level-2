@@ -6,7 +6,8 @@ import { useDeleteBookMutation } from "@/redux/api/baseApi";
 import { Button } from "@/components/ui/button";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from 'sweetalert2'
-import BorrowBookModal from "./BorrowBookModal";
+import BorrowBookModal from "../borrow/BorrowBookModal";
+import BooksDetailsModal from "./BooksDetailsModal";
 
 
 
@@ -48,7 +49,7 @@ const BooksCard = ({ books }: BooksCardProps) => {
 
     return (
         <div>
-            <div className="w-full h-[450px] overflow-hidden bg-white shadow-lg">
+            <div className="w-full overflow-hidden bg-white shadow-lg">
                 <div className="flex items-start px-6 py-3 bg-gray-900">
                     <div>
                         <LiaBookSolid className="text-white text-3xl" />
@@ -57,8 +58,6 @@ const BooksCard = ({ books }: BooksCardProps) => {
                 </div>
 
                 <div className="px-6 py-4">
-                    <p className="py-2 text-gray-700 ">{books.description}</p>
-
                     <div className="flex items-center mt-4 text-gray-700 ">
                         <div>
                             <VscDebugBreakpointDataUnverified className="text-xl" />
@@ -89,12 +88,13 @@ const BooksCard = ({ books }: BooksCardProps) => {
                         </div>
                         <h1 className="px-2 text-sm font-semibold"><span className="font-semibold text-blue-500">Availability</span> {books.available === true ? "Available" : "Not Available"} </h1>
                     </div>
-                    <div className="mt-4 flex gap-2">
+                    <div className="mt-5 flex gap-2">
                         <UpdateBooksModal id={books._id} />
                         <Button onClick={handleDelete} className="bg-red-500 text-xl text-white rounded-sm" variant="outline">
                             <RiDeleteBin6Line />
                         </Button>
                         <BorrowBookModal bookId={books._id} availability={books.available} />
+                        <BooksDetailsModal bookDId={books._id} />
                     </div>
                 </div>
             </div>

@@ -9,3 +9,12 @@ export interface IBooks {
     copies: number,
     available: boolean
 }
+
+export interface IBorrowedBooks {
+    _id: string,
+    book: {
+        title: string,
+        isbn: string,
+    }
+    totalQuantity: number
+}
