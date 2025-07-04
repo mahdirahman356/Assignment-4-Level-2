@@ -17,18 +17,18 @@ const AddBooks = () => {
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
         try {
             const bookData = {
-            ...data,
-            available: true
-        }
-        console.log(bookData)
-        const res = await createBook(bookData).unwrap()
-        Swal.fire({
-            title: `${res.message}`,
-            icon: "success",
-            draggable: true
-        });
-        console.log("Insite submit", res)
-        form.reset()
+                ...data,
+                available: true
+            }
+            console.log(bookData)
+            const res = await createBook(bookData).unwrap()
+            Swal.fire({
+                title: `${res.message}`,
+                icon: "success",
+                draggable: true
+            });
+            console.log("Insite submit", res)
+            form.reset()
         } catch (error) {
             console.log(error)
         }
@@ -42,12 +42,16 @@ const AddBooks = () => {
                     <FormField
                         control={form.control}
                         name="title"
-                        render={({ field }) => (
+                        rules={{ required: "Title is required" }}
+                        render={({ field, fieldState }) => (
                             <FormItem>
                                 <FormLabel>Title</FormLabel>
                                 <FormControl>
                                     <Input {...field} value={field.value || ""} />
                                 </FormControl>
+                                {fieldState.error && (
+                                    <p className="text-sm text-red-500">{fieldState.error.message}</p>
+                                )}
                             </FormItem>
                         )}
                     />
@@ -55,12 +59,16 @@ const AddBooks = () => {
                     <FormField
                         control={form.control}
                         name="description"
-                        render={({ field }) => (
+                        rules={{ required: "Description is required" }}
+                        render={({ field, fieldState }) => (
                             <FormItem>
                                 <FormLabel>Description</FormLabel>
                                 <FormControl>
                                     <Textarea {...field} value={field.value || ""} />
                                 </FormControl>
+                                {fieldState.error && (
+                                    <p className="text-sm text-red-500">{fieldState.error.message}</p>
+                                )}
                             </FormItem>
                         )}
                     />
@@ -68,12 +76,16 @@ const AddBooks = () => {
                     <FormField
                         control={form.control}
                         name="author"
-                        render={({ field }) => (
+                        rules={{ required: "Author name is required" }}
+                        render={({ field, fieldState }) => (
                             <FormItem>
                                 <FormLabel>Author</FormLabel>
                                 <FormControl>
                                     <Input {...field} value={field.value || ""} />
                                 </FormControl>
+                                {fieldState.error && (
+                                    <p className="text-sm text-red-500">{fieldState.error.message}</p>
+                                )}
                             </FormItem>
                         )}
                     />
@@ -81,12 +93,16 @@ const AddBooks = () => {
                     <FormField
                         control={form.control}
                         name="isbn"
-                        render={({ field }) => (
+                        rules={{ required: "ISBN is required" }}
+                        render={({ field, fieldState }) => (
                             <FormItem>
                                 <FormLabel>ISBN</FormLabel>
                                 <FormControl>
                                     <Input {...field} value={field.value || ""} />
                                 </FormControl>
+                                {fieldState.error && (
+                                    <p className="text-sm text-red-500">{fieldState.error.message}</p>
+                                )}
                             </FormItem>
                         )}
                     />
@@ -94,7 +110,8 @@ const AddBooks = () => {
                     <FormField
                         control={form.control}
                         name="copies"
-                        render={({ field }) => (
+                        rules={{ required: "Copies is required" }}
+                        render={({ field, fieldState }) => (
                             <FormItem>
                                 <FormLabel>Copies</FormLabel>
                                 <FormControl>
@@ -102,6 +119,9 @@ const AddBooks = () => {
                                         onChange={(e) => field.onChange(Number(e.target.value))}
                                         value={field.value || ""} />
                                 </FormControl>
+                                {fieldState.error && (
+                                    <p className="text-sm text-red-500">{fieldState.error.message}</p>
+                                )}
                             </FormItem>
                         )}
                     />
@@ -109,7 +129,8 @@ const AddBooks = () => {
                     <FormField
                         control={form.control}
                         name="genre"
-                        render={({ field }) => (
+                        rules={{ required: "Genre is required" }}
+                        render={({ field, fieldState }) => (
                             <FormItem>
                                 <FormLabel>Genre</FormLabel>
                                 <Select onValueChange={field.onChange} defaultValue={field.value}>
@@ -127,6 +148,9 @@ const AddBooks = () => {
                                         <SelectItem value="FANTASY">Fantasy</SelectItem>
                                     </SelectContent>
                                 </Select>
+                                {fieldState.error && (
+                                    <p className="text-sm text-red-500">{fieldState.error.message}</p>
+                                )}
                             </FormItem>
                         )}
                     />

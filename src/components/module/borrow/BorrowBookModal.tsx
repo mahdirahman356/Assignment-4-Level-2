@@ -16,7 +16,7 @@ import { useNavigate } from "react-router";
 
 type IProps = {
     bookId: string;
-    availability: boolean
+    availability: boolean,
 };
 
 
@@ -45,6 +45,13 @@ const BorrowBookModal = ({ bookId, availability }: IProps) => {
             navigate("/borrow-summary");
         } catch (error) {
             console.error(error);
+            const err = error as { data: { message: string } };
+            Swal.fire({
+                title: `${err.data.message}`,
+                icon: "error",
+                draggable: true
+            });
+            setOpen(false)
         }
     }
 
@@ -73,7 +80,8 @@ const BorrowBookModal = ({ bookId, availability }: IProps) => {
                                 <FormField
                                     control={form.control}
                                     name="quantity"
-                                    render={({ field }) => (
+                                    rules={{ required: "Quantity is required" }}
+                                    render={({ field, fieldState }) => (
                                         <FormItem>
                                             <FormLabel>quantity</FormLabel>
                                             <FormControl>
@@ -81,13 +89,17 @@ const BorrowBookModal = ({ bookId, availability }: IProps) => {
                                                     onChange={(e) => field.onChange(Number(e.target.value))}
                                                     value={field.value || ""} />
                                             </FormControl>
+                                            {fieldState.error && (
+                                                <p className="text-sm text-red-500">{fieldState.error.message}</p>
+                                            )}
                                         </FormItem>
                                     )}
                                 />
                                 <FormField
                                     control={form.control}
                                     name="dueDate"
-                                    render={({ field }) => (
+                                    rules={{ required: "Return date is required" }}
+                                    render={({ field, fieldState }) => (
                                         <FormItem className="flex flex-col">
                                             <FormLabel>Return Date</FormLabel>
                                             <Popover>
@@ -118,6 +130,9 @@ const BorrowBookModal = ({ bookId, availability }: IProps) => {
                                                     />
                                                 </PopoverContent>
                                             </Popover>
+                                            {fieldState.error && (
+                                                <p className="text-sm text-red-500">{fieldState.error.message}</p>
+                                            )}
                                         </FormItem>
                                     )}
                                 />
