@@ -54,7 +54,7 @@ const BooksCard = ({ books }: BooksCardProps) => {
                     <div>
                         <LiaBookSolid className="text-white text-3xl" />
                     </div>
-                    <h1 className="mx-3 text-lg font-semibold text-white">{books.title}</h1>
+                    <h1 className="mx-3 text-lg font-semibold text-white">{books.title} <span className="text-red-500">{books.available === true ? "" : "Unavailable"}</span></h1>
                 </div>
 
                 <div className="px-6 py-4">
